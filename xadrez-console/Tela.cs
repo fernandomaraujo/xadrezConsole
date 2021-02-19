@@ -1,5 +1,6 @@
 ﻿using System;
 using tabuleiro;
+using xadrez;
 
 namespace xadrez_console
 {
@@ -41,6 +42,21 @@ namespace xadrez_console
             // Console.WriteLine("___________________________");
             Console.WriteLine("   | a  b  c  d  e  f  g  h");
             
+        }
+
+        // Ler o que o usuário digitar
+        public static PosicaoXadrez lerPosicaoXadrez()
+        {
+
+            string s = Console.ReadLine();
+
+            // Letra
+            char coluna = s[0];
+
+            // Número
+            int linha = int.Parse(s[1] + "");
+
+            return new PosicaoXadrez(coluna, linha);
         }
 
         // Alterando cores

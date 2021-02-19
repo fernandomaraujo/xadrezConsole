@@ -50,6 +50,25 @@
             p.posicao = pos;
         }
 
+        public Peca retirarPeca(Posicao pos)
+        {
+            // Não tem peça nessa posição. Nenhuma a ser removida
+            if(peca(pos) == null)
+            {
+                return null;
+            }
+
+            // Caso tenha, remove
+            Peca aux = peca(pos);
+            aux.posicao = null;
+
+            // Marcando como nula a posição que ela estava no tabuleiro 
+            pecas[pos.linha, pos.coluna] = null;
+
+            // Retorna peça guardada
+            return aux;
+        }
+
         public bool posicaoValida(Posicao pos)
         {
 
