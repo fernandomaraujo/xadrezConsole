@@ -1,6 +1,6 @@
 ﻿namespace tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
 
         public Posicao posicao { get; set; }
@@ -15,6 +15,14 @@
             this.cor = cor;
             this.quantMovimentos = 0;
         }
+
+        /*
+            Matriz de booleanos
+
+            true = Onde movimento for possível;
+            false = Onde movimento não for possível;
+         */
+        public abstract bool[,] movimentosPossiveis();
 
         public void incrementarQuantMovimentos()
         {
