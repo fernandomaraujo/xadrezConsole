@@ -25,12 +25,9 @@ namespace xadrez_console
                         Console.Clear();
 
                         // Imprime tabuleiro
-                        Tela.imprimirTabuleiro(partida.tab);
+                        Tela.imprimirPartida(partida);
 
                         Console.WriteLine();
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.turno);
-                        Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
 
                         // Pegar a posição, e transformar ela pra posição de matriz
                         Console.Write("Origem: ");
