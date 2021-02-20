@@ -25,6 +25,9 @@ namespace xadrez_console
                     Tela.imprimirTabuleiro(partida.tab);
 
                     Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("Turno: " + partida.turno);
+                    Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
 
                     // Pegar a posição, e transformar ela pra posição de matriz
                     Console.Write("Origem: ");
@@ -32,7 +35,6 @@ namespace xadrez_console
 
                     // Guardando na matriz os movimentos possíveis da peça
                     bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
-
 
                     // Limpar o terminal
                     Console.Clear();
@@ -45,8 +47,8 @@ namespace xadrez_console
                     Console.Write("Destino: ");
                     Posicao destino = Tela.lerPosicaoXadrez().paraPosicao();
 
-                    // E executa movimento
-                    partida.executaMovimento(origem, destino);
+                    // E realiza a jogada
+                    partida.realizaJogada(origem, destino);
                 }
 
                 Tela.imprimirTabuleiro(partida.tab);
