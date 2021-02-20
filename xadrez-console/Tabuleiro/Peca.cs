@@ -28,5 +28,28 @@
         {
             quantMovimentos++;
         }
+
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] matriz = movimentosPossiveis();
+            int i, j;
+
+            for(i=0; i<tab.linhas; i++)
+            {
+
+                for(j=0; j<tab.colunas; j++)
+                {
+
+                    // Se tem movimentos possíveis
+                    if(matriz[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            // Não tem movimentos possíveis
+            return false;
+        }
     }
 }
