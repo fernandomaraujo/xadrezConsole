@@ -58,7 +58,7 @@
         }
 
         // Verificando destino
-        public bool podeMoverPara(Posicao pos)
+        public bool movimentoPossivel(Posicao pos)
         {
 
             // Testar se true ou false
