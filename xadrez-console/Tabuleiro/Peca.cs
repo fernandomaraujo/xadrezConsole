@@ -51,5 +51,13 @@
             // Não tem movimentos possíveis
             return false;
         }
+
+        // Verificando destino
+        public bool podeMoverPara(Posicao pos)
+        {
+
+            // Testar se true ou false
+            return movimentosPossiveis()[pos.linha, pos.coluna];
+        }
     }
 }

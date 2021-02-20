@@ -53,6 +53,9 @@ namespace xadrez_console
                         Console.Write("Destino: ");
                         Posicao destino = Tela.lerPosicaoXadrez().paraPosicao();
 
+                        // Validando destino
+                        partida.validarPosicaoDeDestino(origem, destino);
+
                         // E realiza a jogada
                         partida.realizaJogada(origem, destino);
 

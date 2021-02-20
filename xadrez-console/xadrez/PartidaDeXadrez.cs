@@ -70,6 +70,17 @@ namespace xadrez
             }
         }
 
+        // Testa se posição de escolha do jogador é válida
+        public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
+        {
+
+            // Se peça de origem não pode mover para posição de destino
+            if(!tab.peca(origem).podeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida. Aperte Enter para tentar novamente!");
+            }
+        }
+
 
         private void mudaJogador()
         {
