@@ -108,10 +108,18 @@ namespace xadrez
                 xeque = false;
             }
 
+            // Se após jogada, o adversário estiver em xequemate
+            if(testeXequemate(adversaria(jogadorAtual)))
+            {
+                // Partida termina!
+                terminada = true;
 
-            // Incrementa turno pra mudar jogador
-            turno++;
-            mudaJogador();
+            } else
+            {
+                // Incrementa turno pra mudar jogador
+                turno++;
+                mudaJogador();
+            }
 
         }
 
@@ -259,6 +267,57 @@ namespace xadrez
 
         }
 
+        // Identificando se rei de tal cor está em xeque-mate
+        public bool testeXequemate(Cor cor)
+        {
+            // Se não estiver em xeque, não está em xequemate
+            if(!estaEmXeque(cor))
+            {
+                return false;
+            }
+
+            // Procurando alguma peça que movendo, tira jogador do xeque
+            foreach (Peca p in pecasEmJogo(cor))
+            {
+
+                // Matriz de movimentos possíveis dessa peça
+                bool[,] matriz = p.movimentosPossiveis();
+                int i, j;
+
+                for(i=0; i<tab.linhas; i++)
+                {
+                    for(j=0; j<tab.colunas; j++)
+                    {
+
+                        // Se movimento for possível
+                        if(matriz[i,j])
+                        {
+                            Posicao origem = p.posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = executaMovimento(origem, destino);
+
+                            // Se ainda está em xeque, desfaz
+                            bool testeXeque = estaEmXeque(cor);
+                            desfazMovimento(origem, destino, pecaCapturada);
+
+                            // Se não está mais em xeque, movimento anterior tirou do xeque
+                            if(!testeXeque)
+                            {
+                                // Não está em xequemate
+                                return false;
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+            // Se nenhuma peça retira do xeque, então é xequemate!
+            return true;
+
+        }
+
         // Identificando oponente
         private Cor adversaria(Cor cor)
         {
@@ -289,20 +348,20 @@ namespace xadrez
 
             // Peças brancas
             colocarNovaPeca('c', 1, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('c', 2, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('d', 2, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('e', 2, new Torre(tab, Cor.Branca));
-            colocarNovaPeca('e', 1, new Torre(tab, Cor.Branca));
+            //colocarNovaPeca('c', 2, new Torre(tab, Cor.Branca));
+            //colocarNovaPeca('d', 2, new Torre(tab, Cor.Branca));
+            //colocarNovaPeca('e', 2, new Torre(tab, Cor.Branca));
+            colocarNovaPeca('h', 7, new Torre(tab, Cor.Branca));
             colocarNovaPeca('d', 1, new Rei(tab, Cor.Branca));
 
 
             // Peças pretas
-            colocarNovaPeca('c', 7, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('c', 8, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('d', 7, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('e', 7, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('e', 8, new Torre(tab, Cor.Preta));
-            colocarNovaPeca('d', 8, new Rei(tab, Cor.Preta));
+            //colocarNovaPeca('c', 7, new Torre(tab, Cor.Preta));
+            //colocarNovaPeca('c', 8, new Torre(tab, Cor.Preta));
+            //colocarNovaPeca('d', 7, new Torre(tab, Cor.Preta));
+            //colocarNovaPeca('e', 7, new Torre(tab, Cor.Preta));
+            colocarNovaPeca('b', 8, new Torre(tab, Cor.Preta));
+            colocarNovaPeca('a', 8, new Rei(tab, Cor.Preta));
 
         }
     }

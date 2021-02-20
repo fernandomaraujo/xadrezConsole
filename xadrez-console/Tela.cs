@@ -18,12 +18,23 @@ namespace xadrez_console
 
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
 
-            // Se o jogador estiver em xeque
-            if(partida.xeque)
+            // Se a partida ainda não estiver terminada
+            if (!partida.terminada)
             {
-                Console.WriteLine("Você está em xeque!");
+
+                Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+
+                // Se o jogador estiver em xeque
+                if (partida.xeque)
+                {
+                    Console.WriteLine("Você está em xeque!");
+                }
+
+            } else
+            {
+                Console.WriteLine("Xequemate!");
+                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
             }
         }
 
